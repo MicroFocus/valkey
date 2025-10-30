@@ -49,6 +49,19 @@
 
 #include "valkey_strtod.h"
 
+#ifdef __CYGWIN__
+typedef struct { const char *dli_sname; const void *dli_saddr;
+                 const char *dli_fname; const void *dli_fbase; } Dl_info;
+static int dladdr(void *addr, Dl_info *info) {
+    // No symbol lookup on Windows — just fake empty info
+    info->dli_sname = NULL;
+    info->dli_saddr = NULL;
+    info->dli_fname = NULL;
+    info->dli_fbase = NULL;
+    return 0;
+}
+#endif
+
 #ifdef HAVE_BACKTRACE
 #include <execinfo.h>
 #ifndef __OpenBSD__

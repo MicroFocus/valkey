@@ -1,3 +1,29 @@
+# Overview
+
+This repository is a fork of the open-source Valkey project.
+The purpose of this fork is to enable building and distributing Valkey for Windows.
+
+Due to the dependencies required to build under Cygwin, the license for this fork has been changed to GPL.
+
+The primary difference between this fork and the upstream Valkey project is the addition of stub implementations for the dladdr function, which does not have a native equivalent on Windows.This project was forked from the open source Valkey project to provide a way to build and ship valkey for windows. 
+In addition the licence has been changed to GPL because of cygwin dependencies required to build properly for windows.
+
+# Windows build instructions
+
+To build for windows you will need to run the make command under Cygwin with the following dependencies:
+
+- make
+- gcc-core
+- gcc-g++
+- git
+- openssl-devel
+
+# Shipping for Windows
+
+To ship the result executable for windows you need to include the following dlls along with the executable
+- cygwin1.dll
+- cyggcc_s-seh-1.dll
+
 [![codecov](https://codecov.io/gh/valkey-io/valkey/graph/badge.svg?token=KYYSJAYC5F)](https://codecov.io/gh/valkey-io/valkey)
 
 This project was forked from the open source Redis project right before the transition to their new source available licenses.
